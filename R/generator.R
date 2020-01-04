@@ -300,6 +300,7 @@ retryRequest <- function(f){
         Sys.sleep((2 ^ i) + stats::runif(n = 1, min = 0, max = 1))
         the_request <- try(f)
         status_code <- as.character(the_request$status_code)
+        print(status_code)
         if(grepl("^20",status_code)) break
       }
       myMessage("All attempts failed.", level = 3)

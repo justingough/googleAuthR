@@ -1,5 +1,5 @@
 .onLoad <- function(libname, pkgname) {
-  
+  print('gar auth justins version')
   sys_or_null <- function(x){
     sys <- Sys.getenv(x)
     if (sys == "") return(NULL)
