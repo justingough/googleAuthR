@@ -297,10 +297,12 @@ retryRequest <- function(f){
       try_attempts <- getOption("googleAuthR.tryAttempts")
       for(i in 1:try_attempts){
         myMessage("Trying again: ", i, " of ", try_attempts, level = 3)
+        # think retry is getting cached (error) result - test theory and rejig cache to only store 200 results if so
+        gar_cache_empty()
         Sys.sleep((2 ^ i) + stats::runif(n = 1, min = 0, max = 1))
         the_request <- try(f)
         status_code <- as.character(the_request$status_code)
-        print(status_code)
+        myMessage("Retry status code: ", status_code, level = 3)
         if(grepl("^20",status_code)) break
       }
       myMessage("All attempts failed.", level = 3)
