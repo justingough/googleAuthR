@@ -297,8 +297,7 @@ retryRequest <- function(f){
       try_attempts <- getOption("googleAuthR.tryAttempts")
       for(i in 1:try_attempts){
         myMessage("Trying again: ", i, " of ", try_attempts, level = 3)
-        # think retry is getting cached (error) result - test theory and rejig cache to only store 200 results if so
-        gar_cache_empty()
+        Sys.sleep(60)
         Sys.sleep((2 ^ i) + stats::runif(n = 1, min = 0, max = 1))
         the_request <- try(f)
         status_code <- as.character(the_request$status_code)
@@ -358,6 +357,7 @@ doHttrRequest <- function(url,
     user_agent(paste0("googleAuthR/",
                      packageVersion("googleAuthR"),
                      " (gzip)")),
+    pause_min = 25,
     times = getOption("googleAuthR.HttrRetryTimes"),
     terminate_on = getOption("googleAuthR.HttrRetryTerminateOn")
   )
