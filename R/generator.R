@@ -346,7 +346,7 @@ doHttrRequest <- function(url,
                           customConfig=NULL,
                           simplifyVector=getOption("googleAuthR.jsonlite.simplifyVector")){
 
-  
+  myMessage("Do httr request", level = 3)
   arg_list <- list(
     verb = request_type,
     url = url,
@@ -358,6 +358,7 @@ doHttrRequest <- function(url,
                      packageVersion("googleAuthR"),
                      " (gzip)")),
     pause_min = 25,
+    pause_cap = 200,
     times = getOption("googleAuthR.HttrRetryTimes"),
     terminate_on = getOption("googleAuthR.HttrRetryTerminateOn")
   )
