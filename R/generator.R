@@ -173,6 +173,7 @@ gar_api_generator <- function(baseURI,
 
     cached_call <- !is.null(gar_cache_get_loc())
     if(cached_call){
+      myMessage("cached call function", level=1)
       req <- memDoHttrRequest(req_url,
                               shiny_access_token=shiny_access_token,
                               request_type=http_header,

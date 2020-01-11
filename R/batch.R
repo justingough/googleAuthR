@@ -72,6 +72,7 @@ gar_batch <- function(call_list,
   ## call doHttrRequest with batched together functions
   cached_call <- !is.null(gar_cache_get_loc())
   if(cached_call){
+    myMessage("cached batch call", level=1)
     req <- memDoBatchRequest(l, batch_endpoint = batch_endpoint)
   } else {
     req <- doBatchRequest(l, batch_endpoint = batch_endpoint)
